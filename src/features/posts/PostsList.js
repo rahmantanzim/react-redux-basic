@@ -1,11 +1,22 @@
-import { useSelector } from "react-redux"
-
+import { useSelector } from "react-redux";
+import { selectPosts } from "./postsSlice";
 const PostsList = () => {
-const posts = useSelector(state => state.posts)
+  const posts = useSelector(selectPosts);
+  const renderedPosts = posts.map((post)=>{
+    return(
+      <article key={post.id}>
+        <h3>{post.title}</h3>
+        <p>{post.content.substring(0,100)}</p>
+      </article>
+    )
 
+  })
   return (
-    <div>postslist</div>
+  <section>
+    <h2>Posts</h2>
+    {renderedPosts}
+  </section>
   )
-}
+};
 
-export default PostsList
+export default PostsList;
